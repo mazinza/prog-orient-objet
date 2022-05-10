@@ -29,8 +29,8 @@ void Robot :: motors_setup(AccelStepper *left_wheel, AccelStepper *right_wheel, 
 
 
 void Robot :: go_forward(AccelStepper * left_wheel,AccelStepper * right_wheel,MultiStepper * steppers, long *positions, int button){
-  positions[0] += 500;
-  positions[1] += -500;
+  positions[0] += -500;
+  positions[1] += +500;
   steppers->moveTo(positions);
   int state=digitalRead(button);
   while (left_wheel->distanceToGo()!=0 && right_wheel->distanceToGo()!=0 && state!=0){    
@@ -45,7 +45,7 @@ void Robot :: go_forward(AccelStepper * left_wheel,AccelStepper * right_wheel,Mu
 
 
 void Robot:: turn_right(AccelStepper * left_wheel,AccelStepper * right_wheel,MultiStepper * steppers,long *positions, int button){
-  positions[0] += 300;
+  positions[0] += 2000;
   steppers->moveTo(positions);
   int state=digitalRead(button);
   while (left_wheel->distanceToGo()!=0 && state!=0){    
@@ -60,7 +60,7 @@ void Robot:: turn_right(AccelStepper * left_wheel,AccelStepper * right_wheel,Mul
 
 void Robot:: turn_left(AccelStepper * left_wheel,AccelStepper * right_wheel,MultiStepper * steppers,long *positions, int button){
   
-  positions[1] += -300;
+  positions[1] += -2000;
   steppers->moveTo(positions);
   int state=digitalRead(button);
   while (right_wheel->distanceToGo()!=0 && state!=0){    
